@@ -1,5 +1,7 @@
 module.exports.home = function (req, res) {
-  return res.end("<h1>Heyy Home router working<h1>");
+  return res.render('home',{
+    title:"CodeBooks"
+  });
 };
 
 

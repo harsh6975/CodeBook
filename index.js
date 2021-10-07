@@ -1,15 +1,16 @@
 const express = require("express");
+const route = require("./router/index_router");
 
 const app = express();
 
 const port = 3000;
 
 //using express router
-const route=require('./router/index_router');
-app.use('/',route);
+app.use("/", route);
 
 //view engine
-
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 app.listen(port, function (err) {
   if (err) {
