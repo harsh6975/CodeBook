@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 //using express router
-const route=require('./routes/index');
+const route=require('./routes/index_router');
 app.use('/',route);
 
 app.listen(port, function (err) {
