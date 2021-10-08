@@ -1,7 +1,24 @@
 const NewUsers = require("../models/userSchema");
 
 module.exports.profile = function (req, res) {
-  return res.send("<h1>Hey users<h1>");
+  if (req.cookies.user_id) {
+    NewUsers.findById(req.cookies.user_id, function (err, user) {
+      if (err) {
+        console.log("Error in opening profile");
+        return ;
+      }
+      if (user) {
+        return res.render("profile", {
+          user: user,
+        });
+      }
+      // console.log("no user found");
+      return res.redirect("sign-in");
+    });
+  } else {
+    //  console.log("no cookies found");
+    return res.redirect("sign-in");
+  }
 };
 
 module.exports.post = function (req, res) {
@@ -23,11 +40,6 @@ module.exports.signup = function (req, res) {
 module.exports.createAccount = function (req, res) {
   console.log("creating");
   if (req.body.password != req.body.confirm_password) {
-    console.log(
-      "password not match",
-      req.body.password,
-      req.body.confirm_password
-    );
     return res.redirect("back");
   }
 
@@ -42,11 +54,11 @@ module.exports.createAccount = function (req, res) {
           console.log("Error in adding new user in signup");
           return;
         }
-        console.log("confirm");
+        // console.log("confirm");
         return res.redirect("/users/sign-in");
       });
     } else {
-      console.log("user fond");
+      // console.log("user fond");
       return res.redirect("back");
     }
   });
@@ -65,10 +77,16 @@ module.exports.login_sucess = function (req, res) {
         console.log("back");
         return res.redirect("back");
       }
+      res.cookie("user_id", user.id);
       return res.redirect("/users/profile");
     } else {
       console.log("Not Found");
       return res.redirect("back");
     }
   });
+};
+
+module.exports.logout = function (req, res) {
+  res.clearCookie("user_id")
+  return res.redirect("/users/sign-in");
 };
