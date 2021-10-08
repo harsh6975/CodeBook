@@ -1,5 +1,5 @@
 const NewUsers = require("../models/userSchema");
-
+const UsersLogin = require("../models/loginSchema");
 module.exports.profile = function (req, res) {
   return res.send("<h1>Hey users<h1>");
 };
@@ -20,7 +20,7 @@ module.exports.signup = function (req, res) {
   });
 };
 
-module.exports.create = function (req, res) {
+module.exports.createAccount = function (req, res) {
   console.log("creating");
   if (req.body.password != req.body.confirm_password) {
     console.log(
