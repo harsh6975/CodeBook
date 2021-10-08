@@ -1,5 +1,5 @@
 const NewUsers = require("../models/userSchema");
-const UsersLogin = require("../models/loginSchema");
+
 module.exports.profile = function (req, res) {
   return res.send("<h1>Hey users<h1>");
 };
@@ -47,6 +47,27 @@ module.exports.createAccount = function (req, res) {
       });
     } else {
       console.log("user fond");
+      return res.redirect("back");
+    }
+  });
+};
+
+module.exports.login_sucess = function (req, res) {
+  console.log("login_sucess");
+  NewUsers.findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
+      console.log("Error in login");
+      return;
+    }
+    console.log(user);
+    if (user) {
+      if (req.body.password != user.password) {
+        console.log("back");
+        return res.redirect("back");
+      }
+      return res.redirect("/users/profile");
+    } else {
+      console.log("Not Found");
       return res.redirect("back");
     }
   });
