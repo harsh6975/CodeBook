@@ -2,5 +2,12 @@
     <head><title><%=title%></title> </head>
     <body>
         <h1>CodeBooks</h1>
+        <% if(locals.user){%>
+            <h1><%=user.name%></h1>
+            <a href="/users/sign-out"><input type="submit" value="Logout"></a>
+        <%}else {%>
+           <a href="/users/sign-in"><input type="submit" value="Sign In"></a>
+           <a href="/users/sign-up"><input type="submit" value="Sign Up"></a>
+        <%}%>
     </body>
 </body>

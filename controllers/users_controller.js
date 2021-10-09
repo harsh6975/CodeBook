@@ -1,12 +1,7 @@
 const User = require("../models/userSchema");
 
 module.exports.profile = function (req, res) {
-  return res.render('profile',{
-    user: {
-      name:'harsh',
-      email:'asdf'
-    }
-  })
+  return res.render('profile')
 };
 
 module.exports.post = function (req, res) {
@@ -14,12 +9,18 @@ module.exports.post = function (req, res) {
 };
 
 module.exports.signin = function (req, res) {
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile')
+  }
   return res.render("sign_in", {
     title: "Sign In",
   });
 };
 
 module.exports.signup = function (req, res) {
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile')
+  }
   return res.render("sign_up", {
     title: "Sign Up",
   });
@@ -58,5 +59,10 @@ module.exports.createAccount = function (req, res) {
 };
 
 module.exports.createSession=function(req,res){
+  return res.redirect('/users/profile');
+}
+
+module.exports.destroySession=function(req,res){
+  req.logout();
   return res.redirect('/');
 }
