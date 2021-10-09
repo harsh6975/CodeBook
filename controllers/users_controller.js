@@ -1,7 +1,12 @@
-const NewUsers = require("../models/userSchema");
-const UsersLogin = require("../models/loginSchema");
+const User = require("../models/userSchema");
+
 module.exports.profile = function (req, res) {
-  return res.send("<h1>Hey users<h1>");
+  return res.render('profile',{
+    user: {
+      name:'harsh',
+      email:'asdf'
+    }
+  })
 };
 
 module.exports.post = function (req, res) {
@@ -31,13 +36,13 @@ module.exports.createAccount = function (req, res) {
     return res.redirect("back");
   }
 
-  NewUsers.findOne({ email: req.body.email }, function (err, newuser) {
+  User.findOne({ email: req.body.email }, function (err, newuser) {
     if (err) {
       console.log("Error in finding new user in signup");
       return;
     }
     if (!newuser) {
-      NewUsers.create(req.body, function (err, newuser) {
+      User.create(req.body, function (err, newuser) {
         if (err) {
           console.log("Error in adding new user in signup");
           return;
@@ -51,3 +56,7 @@ module.exports.createAccount = function (req, res) {
     }
   });
 };
+
+module.exports.createSession=function(req,res){
+  return res.redirect('/');
+}
