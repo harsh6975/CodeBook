@@ -1,13 +1,13 @@
-<body>
-    <head><title><%=title%></title> </head>
-    <body>
-        <h1>CodeBooks</h1>
-        <% if(locals.user){%>
-            <h1><%=user.name%></h1>
-            <a href="/users/sign-out"><input type="submit" value="Logout"></a>
-        <%}else {%>
-           <a href="/users/sign-in"><input type="submit" value="Sign In"></a>
-           <a href="/users/sign-up"><input type="submit" value="Sign Up"></a>
-        <%}%>
-    </body>
-</body>
+<%-include('header.ejs')%>
+
+<section class="create-post">
+  <form action="/posts/create" method="POST">
+    <textarea
+      name="content"
+      cols="30"
+      rows="2"
+      placeholder="start typing here..."
+    ></textarea>
+    <input type="submit" />
+  </form>
+</section>
