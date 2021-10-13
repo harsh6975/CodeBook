@@ -1,0 +1,4 @@
+<%if(locals.user){%> <% for(post of postList){%>
+<h3><%=(post.user).name%></h3>
+<div><%=post.content%></div>
+<%}%> <%}%>
