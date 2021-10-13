@@ -1,4 +1,14 @@
 <%if(locals.user){%> <% for(post of postList){%>
-<h3><%=(post.user).name%></h3>
-<div><%=post.content%></div>
+<div class="post">
+  <h3><%=(post.user).name%></h3>
+  <div><%=post.content%></div>
+  <div class="comment">
+    <form action="/comment/create" method="POST">
+      <input type="text" name="content" placeholder="Add comments..."/>
+      <!-- we need post id on which comment is done -->
+      <input type="hidden" name="post" value="<%=post.id%>">
+      <input type="submit" />
+    </form>
+  </div>
+</div>
 <%}%> <%}%>

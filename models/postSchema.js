@@ -10,6 +10,13 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // refer to user sechema
     },
+    //arrray of comments
+    comment: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment", // refer to comment sechema
+      },
+    ],
   },
   {
     timestamps: true,
