@@ -1,5 +1,6 @@
-<%-include('header.ejs')%>
+<%-include('header.ejs')%> 
 
+<%if(locals.user){%>
 <section class="create-post">
   <form action="/posts/create" method="POST">
     <textarea
@@ -11,3 +12,5 @@
     <input type="submit" />
   </form>
 </section>
+<%}%> 
+<%-include('post.ejs')%>
