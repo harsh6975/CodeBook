@@ -1,4 +1,5 @@
 const Post = require("../models/postSchema");
+
 //controller for post
 module.exports.create_post = function (req, res) {
   // console.log(req.body);
