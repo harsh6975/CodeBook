@@ -5,9 +5,15 @@ module.exports.home = function (req, res) {
   //Post.find().populate('model).exec(function)
   Post.find({})
     .populate("user")
+    .populate({
+      path: "comment",
+      populate: {
+        path: "user",
+      },
+    })
     .exec(function (err, posts) {
       if (err) {
-        console.log("error in finding the post");
+        console.log("error in finding the post ", err);
         return;
       }
       return res.render("home", {
