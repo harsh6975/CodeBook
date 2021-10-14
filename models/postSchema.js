@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema(
     comment: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "comment", // refer to comment sechema
+        ref: "Comment", // refer to comment sechema
       },
     ],
   },
