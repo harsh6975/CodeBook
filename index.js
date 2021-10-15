@@ -6,12 +6,20 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-Local-Strategy");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
-
+const layout = require("express-ejs-layouts");
 const app = express();
 
 const port = 3000;
 
+//layout
+app.use(layout);
+//extract styles and script from sub pages to layout
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
+
+//to encode data from form
 app.use(express.urlencoded());
+
 app.use(express.static("./assets"));
 app.use(cookieParse());
 
