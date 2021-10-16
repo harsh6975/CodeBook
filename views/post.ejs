@@ -1,6 +1,12 @@
 <%if(locals.user){%> <% for(post of postList){%>
 <div class="post">
-  <h3><%=(post.user).name%></h3>
+  <div class="top" style="display: flex; justify-content: left; align-items: center;">
+    <h3><%=(post.user).name%></h3>
+    <%if(post.user.id==user.id){%>
+      <a href="/posts/destroy/?id=<%=post.id%>" style="margin-left: 20px;">Delete</i></a>
+    <%}%>
+  </div>
+
   <div><%=post.content%></div>
   <div class="comment">
     <form action="/comment/create" method="POST">
@@ -12,14 +18,19 @@
       />
       <!-- we need post id on which comment is done -->
       <input type="hidden" name="post" value="<%=post.id%>" />
-      <input type="submit" value="Add Comment"/>
+      <input type="submit" value="Add Comment" />
     </form>
   </div>
   <div class="post-comments-list">
     <ul id="post-comments-<%= post._id %>">
       <% for (comment of post.comment){%>
       <p>
-        <small> <%= comment.user.name %> </small>
+        <div class="top" style="display: flex; justify-content: left; align-items: center;">
+          <small> <%= comment.user.name %> </small>
+          <%if(comment.user.id==user.id){%>
+            <a href="/comment/destroy/?id=<%=comment.id%>" style="margin-left: 20px;">Delete</i></a>
+          <%}%>
+        </div>
         <br />
         <%= comment.content %>
       </p>

@@ -9,4 +9,6 @@ router.post(
   postController.create_post
 );
 
+router.get("/destroy",postController.destroy);
+
 module.exports = router;
