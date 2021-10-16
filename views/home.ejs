@@ -1,18 +1,15 @@
-
-
 <%if(locals.user){%>
-  <section class="create-post">
-    <form action="/posts/create" method="POST">
-      <textarea
-        name="content"
-        cols="30"
-        rows="2"
-        placeholder="start typing here..."
-        required
-      ></textarea>
-      <input type="submit" />
-    </form>
-  </section>
-  <%}%> 
-  <%-include('post.ejs')%>
-
+<section class="create-post">
+  <form action="/posts/create" method="POST">
+    <textarea
+      name="content"
+      cols="30"
+      rows="2"
+      placeholder="start typing here..."
+      required
+    ></textarea>
+    <input type="submit" />
+  </form>
+</section>
+<%}%> <%-include('post.ejs')%>
+<%-include('friends')%>
