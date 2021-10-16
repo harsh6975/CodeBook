@@ -19,8 +19,9 @@ module.exports.create_post = function (req, res) {
   );
 };
 
-module.exports.destroy = function (req, res) {
-  //console.log(req.params.id);
+module.exports.destroy = async function (req, res) {
+  // using param;
+
   // Post.findById( req.params.id, function (err, post) {
   //   if (err) {
   //     console.log("error in deleting post");
@@ -34,18 +35,32 @@ module.exports.destroy = function (req, res) {
   //     return res.redirect("back");
   //   });
   // });
-  console.log(req.query);
-  Post.findById( req.query.id, function (err, post) {
-    if (err) {
-      console.log("error in deleting post");
-    }
+
+  // using query;
+
+  // Post.findById(req.query.id, function (err, post) {
+  //   if (err) {
+  //     console.log("error in deleting post");
+  //   }
+  //   post.remove();
+  //   Comment.deleteMany({ post: req.query.id }, function (err) {
+  //     if (err) {
+  //       console.log("error in deleting the comment while deleting the post");
+  //       return;
+  //     }
+  //     return res.redirect("back");
+  //   });
+  // });
+
+  //async wait and query
+  try {
+    let post = await Post.findById(req.query.id);
     post.remove();
-    Comment.deleteMany({ post: req.query.id }, function (err) {
-      if (err) {
-        console.log("error in deleting the comment while deleting the post");
-        return;
-      }
-      return res.redirect("back");
-    });
-  });
+    await Comment.deleteMany({ post: req.query.id });
+
+    return res.redirect("back");
+  } catch (err) {
+    console.log("err in deleting the post");
+    return;
+  }
 };
