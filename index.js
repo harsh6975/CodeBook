@@ -7,6 +7,8 @@ const passportLocal = require("./config/passport-Local-Strategy");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
 const layout = require("express-ejs-layouts");
+const flash = require("connect-flash");
+const flashMiddleware = require("./config/flashMiddleware");
 const app = express();
 
 const port = 3000;
@@ -55,6 +57,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+// use flash below session
+app.use(flash());
+app.use(flashMiddleware.flash);
 
 //using express router
 app.use("/", route);

@@ -11,9 +11,10 @@ module.exports.create_post = function (req, res) {
     },
     function (err, post) {
       if (err) {
-        console.log("Error in post while creating post");
+        req.flash('err',err);
         return;
       }
+      req.flash('sucess','Post sucessfully created');
       return res.redirect("back");
     }
   );
@@ -57,7 +58,7 @@ module.exports.destroy = async function (req, res) {
     let post = await Post.findById(req.query.id);
     post.remove();
     await Comment.deleteMany({ post: req.query.id });
-
+    req.flash('sucess','Post sucessfully Deleted');
     return res.redirect("back");
   } catch (err) {
     console.log("err in deleting the post");

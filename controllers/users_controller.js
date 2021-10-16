@@ -18,6 +18,7 @@ module.exports.update = function (req, res) {
   //check if req id is same as param id becoz we can change param id in inspect so able to change any one profile
   if (req.user.id == req.params.id) {
     User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+      req.flash('sucess','Updated sucessfully');
       res.redirect("back");
     });
   }
@@ -47,11 +48,7 @@ module.exports.signup = function (req, res) {
 module.exports.createAccount = async function (req, res) {
   console.log("creating");
   if (req.body.password != req.body.confirm_password) {
-    console.log(
-      "password not match",
-      req.body.password,
-      req.body.confirm_password
-    );
+    req.flash('sucess','Create Account sucessfully');
     return res.redirect("back");
   }
 
@@ -83,18 +80,20 @@ module.exports.createAccount = async function (req, res) {
       return res.redirect("back");
     }
   } catch (err) {
-    console.log("error in creating user");
+    req.flash('error',err);
     return;
   }
 };
 
 //controller for creating session for authenticated user
 module.exports.createSession = function (req, res) {
+  req.flash('sucess','Logged in sucessfully');
   return res.redirect("/");
 };
 
 //controller for logout
 module.exports.destroySession = function (req, res) {
   req.logout();
+  req.flash('sucess','Logged out sucessfully');
   return res.redirect("/");
 };
