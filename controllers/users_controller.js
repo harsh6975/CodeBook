@@ -78,7 +78,7 @@ module.exports.createAccount = function (req, res) {
 
 //controller for creating session for authenticated user
 module.exports.createSession = function (req, res) {
-  return res.redirect("/users/profile");
+  return res.redirect("/");
 };
 
 //controller for logout
