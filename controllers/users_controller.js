@@ -2,7 +2,25 @@ const User = require("../models/userSchema");
 
 //controller for profile page
 module.exports.profile = function (req, res) {
-  return res.render("profile");
+  User.findById(req.params.id, function (err, user) {
+    if (err) {
+      console.log("err in finding user for profile");
+      return;
+    }
+    return res.render("profile", {
+      user_profile: user,
+    });
+  });
+};
+
+//controller for updating profile
+module.exports.update = function (req, res) {
+  //check if req id is same as param id becoz we can change param id in inspect so able to change any one profile
+  if (req.user.id == req.params.id) {
+    User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+      res.redirect("back");
+    });
+  }
 };
 
 //controller for sign in page
@@ -68,5 +86,3 @@ module.exports.destroySession = function (req, res) {
   req.logout();
   return res.redirect("/");
 };
-
-

@@ -1,5 +1,24 @@
 <body>
-    <h1>Hey <%=user.name%></h1>
-    <h3>Your email id : <%=user.email%></h3>
-    <a href="/users/sign-out"><input type="submit" value="Logout"></a>
+  <h1>Hey <%=user_profile.name%></h1>
+  <h3>Your email id : <%=user_profile.email%></h3>
+  <%if(user_profile.id==user.id){%>
+  <h3>Update</h3>
+  <form action="/users/update/<%=user.id%>" method="POST">
+    <input
+      type="text"
+      name="name"
+      required
+      placeholder="Your Name"
+      value="<%=user_profile.name%>"
+    />
+    <input
+      type="text"
+      name="email"
+      required
+      placeholder="Your email"
+      value="<%=user_profile.email%>"
+    />
+    <input type="submit" value="Update" />
+  </form>
+  <%}%>
 </body>
