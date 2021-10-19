@@ -1,0 +1,10 @@
+<p>
+    <div class="top" style="display: flex; justify-content: left; align-items: center;">
+      <small> <%= comment.user.name %> </small>
+      <%if(comment.user.id==user.id){%>
+        <a href="/comment/destroy/?id=<%=comment.id%>" style="margin-left: 20px;">Delete</i></a>
+      <%}%>
+    </div>
+    <br />
+    <%= comment.content %>
+</p>

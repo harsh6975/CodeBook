@@ -1,9 +1,8 @@
-<%if(locals.user){%> <% for(post of postList){%>
-<div class="post">
+<div class="post" id="post-<%=post.id%>">
   <div class="top" style="display: flex; justify-content: left; align-items: center;">
     <h3><%=(post.user).name%></h3>
     <%if(post.user.id==user.id){%>
-      <a href="/posts/destroy/?id=<%=post.id%>" style="margin-left: 20px;">Delete</i></a>
+      <a class="delete-post-button" href="/posts/destroy/?id=<%=post.id%>" style="margin-left: 20px;">Delete</i></a>
     <%}%>
   </div>
 
@@ -21,22 +20,14 @@
       <input type="submit" value="Add Comment" />
     </form>
   </div>
+  <!-- comment container -->
   <div class="post-comments-list">
     <ul id="post-comments-<%= post._id %>">
       <% for (comment of post.comment){%>
-      <p>
-        <div class="top" style="display: flex; justify-content: left; align-items: center;">
-          <small> <%= comment.user.name %> </small>
-          <%if(comment.user.id==user.id){%>
-            <a href="/comment/destroy/?id=<%=comment.id%>" style="margin-left: 20px;">Delete</i></a>
-          <%}%>
-        </div>
-        <br />
-        <%= comment.content %>
-      </p>
+        <%-include('_comment')%>
       <%} %>
     </ul>
   </div>
 </div>
 
-<%}%> <%}%>
+
