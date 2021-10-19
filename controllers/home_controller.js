@@ -44,6 +44,17 @@ module.exports.home = async function (req, res) {
         },
       });
 
+    post.forEach(post => {
+      post.comment.sort((commentA, commentB) => {
+        if (commentA.createdAt.getTime() > commentB.createdAt.getTime()) {
+          return -1;
+        }
+        else {
+          return 1;
+        }
+      })
+    })
+
     let user = await User.find({});
 
     return res.render("home", {
