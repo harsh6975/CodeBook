@@ -35,6 +35,7 @@ const User = require("../models/userSchema");
 module.exports.home = async function (req, res) {
   try {
     let post = await Post.find({})
+      .sort('-createdAt')
       .populate("user")
       .populate({
         path: "comment",
@@ -50,7 +51,7 @@ module.exports.home = async function (req, res) {
       postList: post,
       user_friend: user,
     });
-  } catch(err) {
+  } catch (err) {
     console.log("Error in finding post", err);
     return;
   }
