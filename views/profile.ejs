@@ -1,9 +1,14 @@
 <body>
   <h1>Hey <%=user_profile.name%></h1>
   <h3>Your email id : <%=user_profile.email%></h3>
+  <img src="<%=user.avatar  %>" alt="<%=user.name%>" width="100" />
   <%if(user_profile.id==user.id){%>
   <h3>Update</h3>
-  <form action="/users/update/<%=user.id%>" method="POST">
+  <form
+    action="/users/update/<%=user.id%>"
+    method="POST"
+    enctype="multipart/form-data"
+  >
     <input
       type="text"
       name="name"
@@ -18,6 +23,7 @@
       placeholder="Your email"
       value="<%=user_profile.email%>"
     />
+    <input type="file" name="avatar" placeholder="Profile Pic" />
     <input type="submit" value="Update" />
   </form>
   <%}%>

@@ -23,6 +23,9 @@ app.set("layout extractScripts", true);
 app.use(express.urlencoded());
 
 app.use(express.static("./assets"));
+//make the available path for uploads to browser
+app.use("/uploads", express.static(__dirname + "/uploads"));
+
 app.use(cookieParse());
 
 //view engine
