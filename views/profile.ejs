@@ -1,8 +1,19 @@
 <body>
   <h1>Hey <%=user_profile.name%></h1>
   <h3>Your email id : <%=user_profile.email%></h3>
-  <img src="<%=user.avatar  %>" alt="<%=user.name%>" width="100" />
-  <%if(user_profile.id==user.id){%>
+  <%if(user_profile.avatar){%>
+  <img
+    src="<%=user_profile.avatar  %>"
+    alt="<%=user_profile.name%>"
+    width="100"
+  />
+  <%}else{%>
+  <img
+    src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png"
+    alt="Profile Pic"
+    width="100"
+  />
+  <%}%> <%if(user_profile.id==user.id){%>
   <h3>Update</h3>
   <form
     action="/users/update/<%=user.id%>"
