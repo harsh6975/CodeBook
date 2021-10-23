@@ -4,6 +4,7 @@ const db = require("./config/mongoose");
 const cookieParse = require("cookie-parser");
 const passport = require("passport");
 const passportLocal = require("./config/passport-Local-Strategy");
+const passportJWT = require("./config/passport-JWT-Strategy");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
 const layout = require("express-ejs-layouts");

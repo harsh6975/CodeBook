@@ -20,13 +20,19 @@ module.exports.index = async function (req, res) {
 module.exports.destroy = async function (req, res) {
   try {
     let post = await Post.findById(req.params.id);
-    post.remove();
+    if (post.user == req.user.id) {
+      post.remove();
 
-    await Comment.deleteMany({ post: req.query.id });
+      await Comment.deleteMany({ post: req.query.id });
 
-    return res.json(200, {
-      message: "post deleted successfully",
-    });
+      return res.json(200, {
+        message: "post deleted successfully",
+      });
+    } else {
+      return res.json(401, {
+        message: "Can't delete as ur not authorized",
+      });
+    }
   } catch (err) {
     console.log("error in post api", err);
     return res.json(500, {
