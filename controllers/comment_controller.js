@@ -1,5 +1,6 @@
 const Comment = require("../models/commentSchema");
 const Post = require("../models/postSchema");
+const nodemailer = require("../mailer/commentMailer");
 
 module.exports.create = async function (req, res) {
   //check if post is present or not
@@ -37,11 +38,15 @@ module.exports.create = async function (req, res) {
       });
       post.comment.push(comment);
       post.save();
-      req.flash('sucess','comment sucessfully created');
+      comment = await comment.populate("user");
+      //to send mail useing nodemailer
+      nodemailer.newComment(comment);
+
+      req.flash("sucess", "comment sucessfully created");
       return res.redirect("back");
     }
   } catch (err) {
-    req.flash('error',err);
+    req.flash("error", err);
     return;
   }
 };
@@ -66,10 +71,10 @@ module.exports.destroy = async function (req, res) {
     let postId = comment.post;
     comment.remove();
     await Post.findByIdAndUpdate(postId, { $pull: { comment: req.query.id } });
-    req.flash('sucess','comment sucessfully deleted');
+    req.flash("sucess", "comment sucessfully deleted");
     res.redirect("back");
   } catch (err) {
-    req.flash('sucess',err);
+    req.flash("sucess", err);
     return;
   }
 };
