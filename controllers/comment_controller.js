@@ -1,5 +1,6 @@
 const Comment = require("../models/commentSchema");
 const Post = require("../models/postSchema");
+const Like = require("../models/likeSchema");
 const nodemailer = require("../mailer/commentMailer");
 
 module.exports.create = async function (req, res) {
@@ -70,7 +71,12 @@ module.exports.destroy = async function (req, res) {
     let comment = await Comment.findById(req.query.id);
     let postId = comment.post;
     comment.remove();
+
     await Post.findByIdAndUpdate(postId, { $pull: { comment: req.query.id } });
+
+    //delete all likes on comment
+    await Like.deleteMany({ likeable: comment, onModel: "Comment" });
+
     req.flash("sucess", "comment sucessfully deleted");
     res.redirect("back");
   } catch (err) {

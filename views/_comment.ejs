@@ -1,10 +1,17 @@
-<p>
-    <div class="top" style="display: flex; justify-content: left; align-items: center;">
-      <small> <%= comment.user.name %> </small>
-      <%if(comment.user.id==user.id){%>
-        <a href="/comment/destroy/?id=<%=comment.id%>" style="margin-left: 20px;">Delete</i></a>
-      <%}%>
-    </div>
-    <br />
-    <%= comment.content %>
-</p>
+<div
+  class="top"
+  style="display: flex; justify-content: left; align-items: center"
+>
+  <small> <%= comment.user.name %> </small>
+  <%if(comment.user.id==user.id){%>
+  <a href="/comment/destroy/?id=<%=comment.id%>" style="margin-left: 20px"
+    >Delete</a
+  >
+  <%}%>
+  <a href="/likes/toogle/?id=<%=comment.id%>&type=Comment"
+    ><% if(comment.likes.length>0){%> <%=comment.likes.length%> <%}%>
+    <i class="fas fa-thumbs-up"></i
+  ></a>
+</div>
+<br />
+<%= comment.content %>

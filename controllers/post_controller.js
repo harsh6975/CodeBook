@@ -1,5 +1,7 @@
 const Post = require("../models/postSchema");
 const Comment = require("../models/commentSchema");
+const Like = require("../models/likeSchema");
+
 //controller for post
 module.exports.create_post = async function (req, res) {
   // console.log(req.body);
@@ -63,8 +65,16 @@ module.exports.destroy = async function (req, res) {
   //async wait and query
   try {
     let post = await Post.findById(req.query.id);
+
+    //deleting all like associated to post and its comment
+    await Like.deleteMany({ likeable: post, onModel: "Post" });
+    console.log(post.comment);
+    await Like.deleteMany({ id: { $in: post.comment } });
+
     post.remove();
+
     await Comment.deleteMany({ post: req.query.id });
+
     req.flash("sucess", "Post sucessfully Deleted");
     return res.redirect("back");
   } catch (err) {

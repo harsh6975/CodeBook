@@ -1,12 +1,24 @@
 <div class="post" id="post-<%=post.id%>">
-  <div class="top" style="display: flex; justify-content: left; align-items: center;">
+  <div
+    class="top"
+    style="display: flex; justify-content: left; align-items: center"
+  >
     <h3><%=(post.user).name%></h3>
     <%if(post.user.id==user.id){%>
-      <a class="delete-post-button" href="/posts/destroy/?id=<%=post.id%>" style="margin-left: 20px;">Delete</i></a>
+    <a
+      class="delete-post-button"
+      href="/posts/destroy/?id=<%=post.id%>"
+      style="margin-left: 20px"
+      >Delete</a
+    >
     <%}%>
   </div>
 
   <div><%=post.content%></div>
+  <a href="/likes/toogle/?id=<%=post.id%>&type=Post" method="POST"
+    ><% if(post.likes.length>0){%> <%=post.likes.length%> <%}%>
+    <i class="fas fa-thumbs-up"></i
+  ></a>
   <div class="comment">
     <form action="/comment/create" method="POST">
       <input
@@ -23,11 +35,7 @@
   <!-- comment container -->
   <div class="post-comments-list">
     <ul id="post-comments-<%= post._id %>">
-      <% for (comment of post.comment){%>
-        <%-include('_comment')%>
-      <%} %>
+      <% for (comment of post.comment){%> <%-include('_comment')%> <%} %>
     </ul>
   </div>
 </div>
-
-

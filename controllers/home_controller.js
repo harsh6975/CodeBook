@@ -35,25 +35,25 @@ const User = require("../models/userSchema");
 module.exports.home = async function (req, res) {
   try {
     let post = await Post.find({})
-      .sort('-createdAt')
+      .sort("-createdAt")
       .populate("user")
       .populate({
         path: "comment",
         populate: {
           path: "user",
         },
-      });
+      })
+      .populate("likes");
 
-    post.forEach(post => {
+    post.forEach((post) => {
       post.comment.sort((commentA, commentB) => {
         if (commentA.createdAt.getTime() > commentB.createdAt.getTime()) {
           return -1;
-        }
-        else {
+        } else {
           return 1;
         }
-      })
-    })
+      });
+    });
 
     let user = await User.find({});
 
