@@ -1,6 +1,6 @@
 const Post = require("../models/postSchema");
 const User = require("../models/userSchema");
-
+const FriendShip = require("../models/friendSchema");
 // module.exports.home = function (req, res) {
 //   //To get data from other models
 //   //Post.find().populate('model).exec(function)
@@ -55,12 +55,48 @@ module.exports.home = async function (req, res) {
       });
     });
 
-    let user = await User.find({});
+    let users = await User.find({});
+    for (i of users) {
+      console.log("user:", i);
+    }
+    let userFriend = new Array();
+    //if user is logged in
+    if (req.user) {
+      for (friend of req.user.friends) {
+        let friend1 = await FriendShip.findById(friend);
+
+        let user1 = await User.findById(friend1.to_user);
+        let user2 = await User.findById(friend1.from_user);
+        if (user1.id != req.user.id) {
+          userFriend.push(user1);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        } else if (user2.id != req.user.id) {
+          userFriend.push(user2);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        }
+      }
+    }
+    users.splice(users.indexOf(req.user), 1);
+
+    for (u of userFriend) {
+      console.log("friend", u);
+    }
 
     return res.render("home", {
       title: "CodeBooks",
       postList: post,
-      user_friend: user,
+      AllUser: users,
+      friends: userFriend,
     });
   } catch (err) {
     console.log("Error in finding post", err);

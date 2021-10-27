@@ -1,17 +1,32 @@
 const User = require("../models/userSchema");
+const Friendship = require("../models/friendSchema");
+
 const fs = require("fs");
 const path = require("path");
 //controller for profile page
-module.exports.profile = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
-    if (err) {
-      console.log("err in finding user for profile");
-      return;
+module.exports.profile = async function (req, res) {
+  try {
+    let user = await User.findById(req.params.id);
+    let friend1 = await Friendship.findOne({
+      to_user: req.params.id,
+      from_user: req.user.id,
+    });
+    let friend2 = await Friendship.findOne({
+      from_user: req.params.id,
+      to_user: req.user.id,
+    });
+    let isFriend = false;
+    if (friend1 || friend2) {
+      isFriend = true;
     }
     return res.render("profile", {
       user_profile: user,
+      isFriend: isFriend,
     });
-  });
+  } catch (err) {
+    console.log("Error in profile", err);
+    return;
+  }
 };
 
 //controller for updating profile

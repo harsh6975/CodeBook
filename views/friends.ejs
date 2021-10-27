@@ -1,8 +1,17 @@
 <%if(locals.user){%>
+
 <section>
-  <h3>Friends</h3>
-  <%for(friends of user_friend){%>
-  <p><a href="/users/profile/<%=friends.id%>"> <%=friends.name%> </a></p>
+  <h3>Friends of <%=user.name%></h3>
+  <%for(friend of friends){%>
+  <p>
+    <a href="/users/profile/<%=friend.id%>"> <%=friend.name%></a>
+  </p>
+  <%}%>
+</section>
+<section>
+  <h3>Users</h3>
+  <%for(user of AllUser){%>
+  <p><a href="/users/profile/<%=user.id%>"> <%=user.name%> </a></p>
   <%}%>
 </section>
 <%}%>

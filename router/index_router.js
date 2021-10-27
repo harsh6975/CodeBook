@@ -5,6 +5,8 @@ const postRoutes = require("./post_router");
 const commentRoutes = require("./comment_router");
 const likeRoutes = require("./like_router");
 const apiRoutes = require("./api/index");
+const friendRoutes = require("./friend_router");
+
 const router = express.Router();
 // console.log("route working");
 
@@ -14,5 +16,6 @@ router.use("/posts", postRoutes);
 router.use("/comment", commentRoutes);
 router.use("/api", apiRoutes);
 router.use("/likes", likeRoutes);
+router.use("/friend", friendRoutes);
 
 module.exports = router;

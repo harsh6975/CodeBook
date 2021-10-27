@@ -3,7 +3,7 @@
   <h3>Your email id : <%=user_profile.email%></h3>
   <%if(user_profile.avatar){%>
   <img
-    src="<%=user_profile.avatar  %>"
+    src="<%=user_profile.avatar%>"
     alt="<%=user_profile.name%>"
     width="100"
   />
@@ -37,5 +37,13 @@
     <input type="file" name="avatar" placeholder="Profile Pic" />
     <input type="submit" value="Update" />
   </form>
+  <%}else{%>
+  <a href="/friend/toogle/?id=<%=user_profile.id%> ">
+    <%if(!isFriend){%>
+    <button class="btn btn-success">Add Friend</button>
+    <%}else{%>
+    <button class="btn btn-danger">Remove Friend</button>
+    <%}%>
+  </a>
   <%}%>
 </body>
