@@ -56,9 +56,6 @@ module.exports.home = async function (req, res) {
     });
 
     let users = await User.find({});
-    for (i of users) {
-      console.log("user:", i);
-    }
     let userFriend = new Array();
     //if user is logged in
     if (req.user) {
@@ -87,10 +84,6 @@ module.exports.home = async function (req, res) {
       }
     }
     users.splice(users.indexOf(req.user), 1);
-
-    for (u of userFriend) {
-      console.log("friend", u);
-    }
 
     return res.render("home", {
       title: "CodeBooks",
