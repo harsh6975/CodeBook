@@ -94,7 +94,7 @@ module.exports.signup = function (req, res) {
 
 //controller for create account
 module.exports.createAccount = async function (req, res) {
-  console.log("creating");
+  console.log("creating new account");
   if (req.body.password != req.body.confirm_password) {
     req.flash("sucess", "Create Account sucessfully");
     return res.redirect("back");
