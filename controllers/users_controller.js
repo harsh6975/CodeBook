@@ -77,7 +77,7 @@ module.exports.signin = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/");
   }
-  return res.render("sign_in", {
+  return res.render("sign-common", {
     title: "Sign In",
   });
 };
@@ -87,7 +87,7 @@ module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
   }
-  return res.render("sign_up", {
+  return res.render("sign-common", {
     title: "Sign Up",
   });
 };

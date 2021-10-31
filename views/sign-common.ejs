@@ -1,0 +1,31 @@
+<body class="sign-in-up">
+  <div class="container sign-popup">
+    <div class="row sign-pop">
+      <div class="col-lg-6">
+        <div class="site-info">
+          <img
+            src="/img/logo.jpg"
+            alt="logo"
+            style=" margin-top: 4%"
+          />
+          <img
+            src="/img/login.png"
+            alt="login-logo"
+            style="padding: 25px 0 10px 0; margin-top:12%"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login-sec">
+          <ul class="sign-control">
+            <li data-tab="tab-1" class="animated fadeIn current">
+              <a href="#">Sign in</a>
+            </li>
+            <li data-tab="tab-2" class="fadeIn"><a href=""> Sign Up</a></li>
+          </ul>
+          <div class="sign_in_sec" id="tab-1"><%-include('_sign_in')%></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
