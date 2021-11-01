@@ -35,20 +35,28 @@
     <script>
       <% if(flash.sucess && flash.sucess.length>0){%>
           new Noty({
-            theme: 'relax',
+            theme: 'sunset',
             text: '<%=flash.sucess%> ',
-            type:'error',
+            type:'success',
             layout:'topRight',
             timeout:1500,
+            animation: {
+               open: 'animated bounceInRight', // Animate.css class names
+               close: 'animated bounceOutRight' // Animate.css class names
+            }
           }).show();
       <%}%>
       <% if(flash.error && flash.error.length>0){%>
           new Noty({
-            theme: 'relax',
+            theme: 'mint',
             text: '<%=flash.error%> ',
             type:'error',
             layout:'topRight',
             timeout:1500,
+            animation: {
+                open: 'animated bounceInRight', // Animate.css class names
+                close: 'animated bounceOutRight' // Animate.css class names
+            }
           }).show();
       <% } %>
     </script>

@@ -79,6 +79,8 @@ module.exports.signin = function (req, res) {
   }
   return res.render("sign-common", {
     title: "Sign In",
+    class1: "animated fadeIn current",
+    class2: "",
   });
 };
 
@@ -89,14 +91,16 @@ module.exports.signup = function (req, res) {
   }
   return res.render("sign-common", {
     title: "Sign Up",
+    class2: "animated fadeIn current",
+    class1: "",
   });
 };
 
 //controller for create account
 module.exports.createAccount = async function (req, res) {
-  console.log("creating new account");
+
   if (req.body.password != req.body.confirm_password) {
-    req.flash("sucess", "Create Account sucessfully");
+    req.flash("sucess", "Password not Match");
     return res.redirect("back");
   }
 
@@ -123,8 +127,10 @@ module.exports.createAccount = async function (req, res) {
     let newuser = await User.findOne({ email: req.body.email });
     if (!newuser) {
       await User.create(req.body);
+      req.flash("sucess", "Account created, Please login");
       return res.redirect("/users/sign-in");
     } else {
+      req.flash("sucess", "Account exist, Please login");
       return res.redirect("back");
     }
   } catch (err) {
