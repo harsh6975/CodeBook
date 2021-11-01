@@ -1,10 +1,27 @@
 <h3>Sign In</h3>
-<form action="/users/create-session" method="POST">
+<form action="/users/createAccount" method="POST">
   <div class="row">
     <div class="col-lg-12">
       <div class="sn-field">
         <i class="fa fa-user"></i>
-        <input type="text" name="email" id="email" placeholder="Username" />
+        <input type="text" name="name" id="name" placeholder="Name *" />
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="sn-field">
+        <i class="fas fa-envelope"></i>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="Email/Username *"
+        />
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="sn-field">
+        <i class="fas fa-birthday-cake"></i>
+        <input type="date" name="dob" id="dob" placeholder="Date Of Birth *" />
       </div>
     </div>
     <div class="col-lg-12">
@@ -15,6 +32,17 @@
           name="password"
           id="password"
           placeholder="Password"
+        />
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="sn-field">
+        <i class="fa fa-lock"></i>
+        <input
+          type="password"
+          name="confirm_password"
+          id="confirm_password"
+          placeholder="Confirm Password"
         />
       </div>
     </div>
