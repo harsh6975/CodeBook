@@ -213,3 +213,113 @@ body {
 .social-sn ul li a i {
   margin-right: 10px;
 }
+
+/* Header */
+
+.header-row {
+  position: sticky;
+  background-color: #e44d3a;
+  text-align: center;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.left-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 23px;
+}
+
+.left-header form {
+  padding-top: 2px;
+  display: flex;
+}
+
+.left-header form input {
+  border-radius: 3px;
+  background-color: whitesmoke;
+  height: 35px;
+  color: #4b4242;
+  font-size: 12px;
+  padding: 0 10px;
+  border-right: none;
+  width: 280px;
+  border: none;
+}
+
+.left-header form button {
+  height: 35px;
+  border-radius: 3px;
+  border-left: none;
+  margin-left: -4px;
+  margin-top: 0px;
+  border: none;
+  background-color: whitesmoke;
+}
+.left-header form button i {
+  color: #4b4242;
+}
+input:focus {
+  outline: none;
+}
+
+.left-header a img {
+  width: 80%;
+  height: 25%;
+}
+.center-header {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-top: 23px;
+  margin-left: 20px;
+}
+
+.center-header li {
+  margin-right: 18px;
+  margin-left: 18px;
+}
+
+.center-header li a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+.center-header li a span {
+  display: block;
+  font-size: 21px;
+}
+.right-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 23px;
+}
+
+.right-header img {
+  width: 6%;
+  height: 27%;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.right-header i {
+  font-size: 40px;
+  color: whitesmoke;
+  margin-right: 10px;
+  margin-top: -4px;
+}
+
+.right-header a {
+  text-decoration: none;
+}
+
+.right-header a span {
+  font-size: 20px;
+  color: whitesmoke;
+  margin-right: 10px;
+}
+
+.right-header a input{
+  border: none;
+  margin-top: 3px;
+  border-radius: 3px;
+}
