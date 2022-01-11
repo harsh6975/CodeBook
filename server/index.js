@@ -13,7 +13,7 @@ const flash = require("connect-flash");
 const flashMiddleware = require("./config/flashMiddleware");
 const app = express();
 
-const port = 3000;
+const port = 5000;
 
 //layout
 app.use(layout);
