@@ -1,0 +1,38 @@
+<body class="sign-in-up">
+  <div class="container sign-popup">
+    <div class="row sign-pop">
+      <div class="col-lg-6">
+        <div class="site-info">
+          <img
+            src="/img/logo.jpg"
+            alt="logo"
+            style="margin-bottom: 50px; margin-top: 30px"
+          />
+          <img
+            src="/img/login.png"
+            alt="login-logo"
+            style="margin-bottom: 30px; margin-top: 50px; padding: 10px"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login-sec">
+          <ul class="sign-control">
+            <li id="tab-1" class="<%=class1%>">
+              <a href="/users/sign-in">Sign in</a>
+            </li>
+            <li id="tab-2" class="<%=class2%>">
+              <a href="/users/sign-up"> Sign Up</a>
+            </li>
+          </ul>
+          <%if(title == "Sign In"){%>
+          <div class="sign_in_sec"><%-include('_sign_in')%></div>
+          <%}else{%>
+          <div class="sign_in_sec"><%-include('_sign_up')%></div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/js/script.js"></script>

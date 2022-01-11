@@ -1,0 +1,18 @@
+<div class="mini-profile">
+  <div class="row1"></div>
+  <div class="row2">
+    <%if(user.avatar){%>
+    <img src="<%=user.avatar%>" class="img-thumbnail" />
+    <%}else{%>
+    <i class="fas fa-user-circle"></i>
+    <%}%>
+    <h4><%=user.name%></h4>
+  </div>
+  <div class="row3">
+    <h5>Friends</h5>
+    <p><%=user.friends.length%></p>
+  </div>
+  <div class="row4">
+    <a href="/users/profile/<%=user.id%>"> View Profile</a>
+  </div>
+</div>

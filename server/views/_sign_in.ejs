@@ -1,0 +1,48 @@
+<h3>Sign In</h3>
+<form action="/users/create-session" method="POST">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="sn-field">
+        <i class="fa fa-user"></i>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Username/Email"
+        />
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="sn-field">
+        <i class="fa fa-lock"></i>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="sn-but">
+        <button type="submit">Sign In</button>
+        <a href="/forget/search">Forget Password?</a>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="social-sn">
+  <h4>Login Via Social Account</h4>
+  <ul>
+    <li>
+      <a href="/users/auth/google" class="google">
+        <i class="fab fa-google"></i>Login via Google
+      </a>
+    </li>
+    <li>
+      <a href="/users/auth/google" class="fb">
+        <i class="fab fa-facebook-f"></i>Login via Facebook
+      </a>
+    </li>
+  </ul>
+</div>

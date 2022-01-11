@@ -1,0 +1,29 @@
+<%if(!locals.user){%>
+<div class="front">
+  <h1>Welcome To CodeBook</h1>
+  <a href="/users/sign-in">
+    <button type="button" class="btn btn-warning">Get In</button></a
+  >
+</div>
+<%}else{%>
+<!-- include feed -->
+<div class="home">
+  <div class="home-left">
+    <!-- include mini profile -->
+    <%-include('mini-profile.ejs')%>
+    <!-- include friend -->
+    <%-include('friends.ejs')%>
+  </div>
+  <div class="home-center">
+    <!-- include feed -->
+    <%-include('feed.ejs')%>
+  </div>
+  <div class="home-right">
+    <!-- include Tools -->
+    <%-include('tools.ejs')%>
+    <!-- include Suggestions -->
+    <%-include('suggestion.ejs')%>
+  </div>
+</div>
+
+<%}%>
