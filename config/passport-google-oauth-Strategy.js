@@ -7,7 +7,7 @@ const User = require("../models/userSchema");
 const opts = {
   clientID:
     "957973625302-es3plcqh2rvde41nd55bcvhcv9k60dj5.apps.googleusercontent.com",
-    callbackURL: "http://localhost:3000/users/auth/google/callback",
+  callbackURL: "http://localhost:3000/users/auth/google/callback",
 };
 
 //telling passport to use google oauth
