@@ -21,6 +21,9 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/users/sign-in" }),
   userController.createSession
 );
+router.get("/friend", userController.friend);
+router.get("/allUser", userController.allUser);
+router.post("/search", userController.search);
 
 router.post("/createAccount", userController.createAccount);
 //passport as middleare for auth

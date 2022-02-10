@@ -1,56 +1,57 @@
-<div
-  style="
-    margin-top: 100px;
-    text-align: center;
-    border: 1px solid black;
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
-  "
->
-  <div style="display: flex; align-items: center; justify-content: center">
+<div class="my-profile">
+  <div class="my-heading">
     <%if(user_profile.avatar){%>
     <img
       src="<%=user_profile.avatar%>"
       alt="<%=user_profile.name%>"
       width="100"
-      style="width: 40px; height: 40px; border-radius: 50%; margin-right: 20px"
+      style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px"
     />
     <%}else{%>
     <i
       class="fas fa-user-circle"
-      style="margin-right: 20px; font-size: 40px"
+      style="margin-right: 20px; font-size: 80px"
     ></i>
     <%}%>
-    <h1><%=user_profile.name%></h1>
+    <div>
+      <h1><%=user_profile.name%></h1>
+      <h5><%=user_profile.email%></h5>
+    </div>
   </div>
-  <h3><%=user_profile.email%></h3>
-  <%if(user_profile.id==user.id){%>
-  <h3>Update</h3>
-  <form
-    action="/users/update/<%=user.id%>"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <input
-      type="text"
-      name="name"
-      required
-      placeholder="Your Name"
-      value="<%=user_profile.name%>"
-    />
-    <input
-      type="text"
-      name="email"
-      required
-      placeholder="Your email"
-      value="<%=user_profile.email%>"
-    />
-    <input type="file" name="avatar" placeholder="Profile Pic" />
-    <input type="submit" value="Update" />
-  </form>
+  <div class="my-profile-edit">
+    <%if(user_profile.id==user.id){%>
+    <form
+      action="/users/update/<%=user.id%>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        class="form-control"
+        type="text"
+        name="name"
+        required
+        placeholder="Your Name"
+        value="<%=user_profile.name%>"
+      />
+      <input
+        class="form-control"
+        type="text"
+        name="email"
+        required
+        placeholder="Your email"
+        value="<%=user_profile.email%>"
+      />
+      <input
+        class="form-control"
+        type="file"
+        name="avatar"
+        placeholder="Profile Pic"
+      />
+      <input class="form-control btn-danger" type="submit" value="Update" />
+    </form>
+  </div>
   <%}else{%>
-  <a href="/friend/toogle/?id=<%=user_profile.id%> ">
+  <a href="/friend/toogle/?id=<%=user_profile.id%> " class="my-button">
     <%if(!isFriend){%>
     <button class="btn btn-success">Add Friend</button>
     <%}else{%>

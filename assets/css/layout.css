@@ -34,7 +34,6 @@ body {
   justify-content: center;
 }
 
-
 .home-center {
   margin-left: 130px;
   margin-right: 130px;
@@ -352,7 +351,7 @@ input:focus {
 /* Feed */
 
 .feed {
-  margin-top: 100px;
+  margin-top: 140px;
 }
 .create-post {
   display: inline-flex;
@@ -386,6 +385,18 @@ input:focus {
 }
 
 .card {
+  background-color: white;
+  border-top: none;
+  padding-bottom: 0%;
+  box-shadow: 0 0 30px rgb(214, 213, 213);
+  padding: 20px;
+  border-radius: 10px;
+  border-top: none;
+  min-width: 625px;
+  max-width: 625px;
+}
+
+.card1 {
   background-color: whitesmoke;
   border-top: none;
   padding-bottom: 0%;
@@ -411,10 +422,23 @@ input:focus {
   margin-bottom: 10px;
 }
 
+.card1 form textarea {
+  padding: 5px 25px;
+  border: none;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card1 form textarea:focus {
+  outline: none;
+  margin-bottom: 10px;
+}
+
 .new-post-buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .new-post-buttons input {
@@ -505,10 +529,15 @@ input:focus {
 /* list of friends */
 
 .friend {
-  margin-top: 50px;
+  margin-top: 100px;
   background-color: whitesmoke;
-  border: 3px solid #e75348;
+  box-shadow: 0 0 30px #e44d3a;
+  padding: 20px;
+  border-radius: 10px;
   min-width: 400px;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .friend h3 {
@@ -546,10 +575,12 @@ input:focus {
 /* suggestion */
 
 .user {
-  margin-top: 50px;
+  margin-top: 80px;
   background-color: whitesmoke;
-  border: 3px solid #e75348;
   min-width: 400px;
+  box-shadow: 0 0 30px #e44d3a;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .user h3 {
@@ -588,10 +619,12 @@ input:focus {
 /* mini-profile */
 .mini-profile {
   min-width: 400px;
-  margin-top: 100px;
+  margin-top: 140px;
   background-color: whitesmoke;
-  border: 2px solid #e44d3a;
+  box-shadow: 0 0 30px #e44d3a;
+  border-radius: 10px;
 }
+
 .row1 {
   height: 100px;
   background-color: #e44d3a;
@@ -655,10 +688,13 @@ input:focus {
 
 /* Tools */
 .tool {
-  margin-top: 100px;
+  margin-top: 140px;
   min-width: 400px;
-  border: 3px solid #e44d3a;
+  box-shadow: 0 0 30px #e44d3a;
+  padding: 20px;
+  border-radius: 10px;
 }
+
 .tool h3 {
   margin-top: 8px;
   padding-bottom: 8px;
@@ -676,4 +712,46 @@ input:focus {
 
 .tool-btn {
   margin-right: 30px;
+}
+
+.my-profile {
+  margin-top: 250px;
+  text-align: center;
+  background-color: white;
+  max-width: fit-content;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  box-shadow: 0 0 30px #e44d3a;
+  border-radius: 10px;
+}
+
+.my-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-profile-edit form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.my-profile-edit form input {
+  margin-top: 10px;
+}
+
+.my-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.my-button {
+  margin-left: -80%;
 }

@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.get("/toogle", friendController.toggle);
 
+
 module.exports = router;
