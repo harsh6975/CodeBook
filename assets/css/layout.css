@@ -215,6 +215,17 @@ body {
 }
 
 /* Header */
+.navbar {
+  margin-top: -10px;
+  width: 100%;
+}
+
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .header-row {
   position: sticky;
@@ -318,7 +329,7 @@ input:focus {
   margin-right: 10px;
 }
 
-.right-header a input{
+.right-header a input {
   border: none;
   margin-top: 3px;
   border-radius: 3px;
