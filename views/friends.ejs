@@ -1,17 +1,26 @@
-<%if(locals.user){%>
-
-<section>
-  <h3>Friends of <%=user.name%></h3>
+<%if(friends.length>0){%>
+<div class="friend">
+  <h3>Friends</h3>
   <%for(friend of friends){%>
-  <p>
-    <a href="/users/profile/<%=friend.id%>"> <%=friend.name%></a>
-  </p>
+  <div class="row friend-detail">
+    <div class="col-2">
+      <%if(friend.avatar){%>
+      <img src="<%=friend.avatar%>" alt="" />
+      <%}else{%>
+      <i class="fas fa-user-circle"></i>
+      <%}%>
+    </div>
+    <div class="col-7 friend-name">
+      <a href="/users/profile/<%=friend.id%>"> <%=friend.name%></a>
+    </div>
+    <div class="col-3 remove-friend">
+      <a href="/friend/toogle/?id=<%=friend.id%> ">
+        <i class="far fa-minus-square"></i>
+      </a>
+    </div>
+  </div>
   <%}%>
-</section>
-<section>
-  <h3>Users</h3>
-  <%for(user of AllUser){%>
-  <p><a href="/users/profile/<%=user.id%>"> <%=user.name%> </a></p>
-  <%}%>
-</section>
+</div>
+<%}else{%>
+
 <%}%>

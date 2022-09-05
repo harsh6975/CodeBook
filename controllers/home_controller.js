@@ -82,8 +82,8 @@ module.exports.home = async function (req, res) {
           }
         }
       }
+      users.splice(users.indexOf(req.user._id), 1);
     }
-    users.splice(users.indexOf(req.user), 1);
 
     return res.render("home", {
       title: "CodeBooks",

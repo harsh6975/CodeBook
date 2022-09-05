@@ -1,0 +1,42 @@
+<%if(alluser.length>0){%>
+<div class="friend">
+  <h3>All User</h3>
+  <%for(friend of alluser){%>
+  <div class="row friend-detail">
+    <div class="col-2">
+      <%if(friend.avatar){%>
+      <img src="<%=friend.avatar%>" alt="" />
+      <%}else{%>
+      <i class="fas fa-user-circle"></i>
+      <%}%>
+    </div>
+    <div class="col-7 friend-name">
+      <a href="/users/profile/<%=friend.id%>"> <%=friend.name%></a>
+    </div>
+    <div class="col-3 remove-friend">
+      <a href="/friend/toogle/?id=<%=friend.id%> ">
+        <i class="far fa-plus-square"></i>
+      </a>
+    </div>
+  </div>
+  <%}%> <%for(friend of friends){%>
+  <div class="row friend-detail">
+    <div class="col-2">
+      <%if(friend.avatar){%>
+      <img src="<%=friend.avatar%>" alt="" />
+      <%}else{%>
+      <i class="fas fa-user-circle"></i>
+      <%}%>
+    </div>
+    <div class="col-7 friend-name">
+      <a href="/users/profile/<%=friend.id%>"> <%=friend.name%></a>
+    </div>
+    <div class="col-3 remove-friend">
+      <a href="/friend/toogle/?id=<%=friend.id%> ">
+        <i class="far fa-minus-square"></i>
+      </a>
+    </div>
+  </div>
+  <%}%>
+</div>
+<%}%>

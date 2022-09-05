@@ -1,0 +1,90 @@
+<%for(let i=0;i< alluser.length;i++){%>
+<div
+  style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+  "
+>
+  <div class="my-profile">
+    <div class="my-heading">
+      <%if(alluser[i].avatar){%>
+      <img
+        src="<%=alluser[i].avatar%>"
+        alt="<%=alluser[i].name%>"
+        width="100"
+        style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          margin-right: 20px;
+        "
+      />
+      <%}else{%>
+      <i
+        class="fas fa-user-circle"
+        style="margin-right: 20px; font-size: 60px"
+      ></i>
+      <%}%>
+      <div>
+        <h1><%=alluser[i].name%></h1>
+        <h5><%=alluser[i].email%></h5>
+      </div>
+    </div>
+    <div class="my-profile-edit">
+      <%if(alluser[i].id==user.id){%>
+      <form
+        action="/users/update/<%=user.id%>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          required
+          placeholder="Your Name"
+          value="<%=alluser[i].name%>"
+        />
+        <input
+          class="form-control"
+          type="text"
+          name="email"
+          required
+          placeholder="Your email"
+          value="<%=alluser[i].email%>"
+        />
+        <input
+          class="form-control"
+          type="file"
+          name="avatar"
+          placeholder="Profile Pic"
+        />
+        <input class="form-control btn-danger" type="submit" value="Update" />
+      </form>
+    </div>
+    <%}else{%>
+    <a href="/friend/toogle/?id=<%=alluser[i].id%> " class="my-button">
+      <%if(!alluser[i].isFriend){%>
+      <button class="btn btn-success">Add Friend</button>
+      <%}else{%>
+      <button class="btn btn-danger">Remove Friend</button>
+      <%}%>
+    </a>
+  </div>
+</div>
+<%}%> <%}%> <%if(alluser.length==0){%>
+<h2
+  style="
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  No User Found
+</h2>
+<%}%>

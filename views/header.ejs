@@ -1,0 +1,48 @@
+<%if(locals.user){%>
+<header class="fixed-top">
+  <div class="row header-row">
+    <div class="col-4 left-header">
+      <a href="/"><img src="/img/logo1.jpg" alt="" srcset="" /> </a>
+      <form action="/users/search" method="POST">
+        <input type="text" name="search" id="search" placeholder="Search..." />
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="col-4 center-header">
+      <li class="menu-item">
+        <a href="/"
+          ><span><i class="fas fa-home"></i></span>Home
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="/users/profile/<%=user.id%>"
+          ><span><i class="fas fa-address-card"></i></span>Profile</a
+        >
+      </li>
+      <li class="menu-item">
+        <a href="/users/friend"
+          ><span><i class="fas fa-users"></i></span>Friends</a
+        >
+      </li>
+      <li class="menu-item">
+        <a href="/users/allUser"
+          ><span><i class="fas fa-user"></i></span>All Users
+        </a>
+      </li>
+    </div>
+    <div class="col-4 right-header">
+      <%if(user.avatar){%>
+      <img src="<%=user.avatar%>" alt="<%=user.name%>" />
+      <%}else{%>
+      <i class="fas fa-user-circle"></i>
+      <%}%>
+      <a href="/users/profile/<%=user.id%>"><span><%=user.name%></span></a>
+      <a href="/users/sign-out"
+        ><button type="submit" class="btn btn-warning">Logout</button></a
+      >
+    </div>
+  </div>
+</header>
+<%}%>

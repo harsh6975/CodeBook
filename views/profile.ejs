@@ -1,40 +1,57 @@
-<body>
-  <h1>Hey <%=user_profile.name%></h1>
-  <h3>Your email id : <%=user_profile.email%></h3>
-  <%if(user_profile.avatar){%>
-  <img
-    src="<%=user_profile.avatar%>"
-    alt="<%=user_profile.name%>"
-    width="100"
-  />
-  <%}else{%>
-  <i class="fas fa-user-circle"></i>
-  <%}%> <%if(user_profile.id==user.id){%>
-  <h3>Update</h3>
-  <form
-    action="/users/update/<%=user.id%>"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <input
-      type="text"
-      name="name"
-      required
-      placeholder="Your Name"
-      value="<%=user_profile.name%>"
+<div class="my-profile">
+  <div class="my-heading">
+    <%if(user_profile.avatar){%>
+    <img
+      src="<%=user_profile.avatar%>"
+      alt="<%=user_profile.name%>"
+      width="100"
+      style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px"
     />
-    <input
-      type="text"
-      name="email"
-      required
-      placeholder="Your email"
-      value="<%=user_profile.email%>"
-    />
-    <input type="file" name="avatar" placeholder="Profile Pic" />
-    <input type="submit" value="Update" />
-  </form>
+    <%}else{%>
+    <i
+      class="fas fa-user-circle"
+      style="margin-right: 20px; font-size: 80px"
+    ></i>
+    <%}%>
+    <div>
+      <h1><%=user_profile.name%></h1>
+      <h5><%=user_profile.email%></h5>
+    </div>
+  </div>
+  <div class="my-profile-edit">
+    <%if(user_profile.id==user.id){%>
+    <form
+      action="/users/update/<%=user.id%>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        class="form-control"
+        type="text"
+        name="name"
+        required
+        placeholder="Your Name"
+        value="<%=user_profile.name%>"
+      />
+      <input
+        class="form-control"
+        type="text"
+        name="email"
+        required
+        placeholder="Your email"
+        value="<%=user_profile.email%>"
+      />
+      <input
+        class="form-control"
+        type="file"
+        name="avatar"
+        placeholder="Profile Pic"
+      />
+      <input class="form-control btn-danger" type="submit" value="Update" />
+    </form>
+  </div>
   <%}else{%>
-  <a href="/friend/toogle/?id=<%=user_profile.id%> ">
+  <a href="/friend/toogle/?id=<%=user_profile.id%> " class="my-button">
     <%if(!isFriend){%>
     <button class="btn btn-success">Add Friend</button>
     <%}else{%>
@@ -42,4 +59,4 @@
     <%}%>
   </a>
   <%}%>
-</body>
+</div>

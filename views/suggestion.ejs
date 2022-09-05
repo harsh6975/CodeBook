@@ -1,0 +1,24 @@
+<%if(AllUser.length>0){%>
+<div class="user">
+  <h3>Suggestions</h3>
+  <%for(user of AllUser){%>
+  <div class="row user-detail">
+    <div class="col-2">
+      <%if(user.avatar){%>
+      <img src="<%=user.avatar%>" alt="" />
+      <%}else{%>
+      <i class="fas fa-user-circle"></i>
+      <%}%>
+    </div>
+    <div class="col-7 user-name">
+      <a href="/users/profile/<%=user.id%>"> <%=user.name%></a>
+    </div>
+    <div class="col-3 add-user">
+      <a href="/friend/toogle/?id=<%=user.id%> ">
+        <i class="far fa-plus-square"></i>
+      </a>
+    </div>
+  </div>
+  <%}%>
+</div>
+<%}%>

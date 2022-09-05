@@ -12,7 +12,7 @@ const layout = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const flashMiddleware = require("./config/flashMiddleware");
 const app = express();
-
+const env = require("./config/enviroment");
 const port = 3000;
 
 //layout
@@ -24,7 +24,7 @@ app.set("layout extractScripts", true);
 //to encode data from form
 app.use(express.urlencoded());
 
-app.use(express.static("./assets"));
+app.use(express.static(env.asset_path));
 //make the available path for uploads to browser
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
@@ -39,7 +39,7 @@ app.use(
   session({
     name: "CodeBooks",
     // TODO change the secret before deployment in production mode
-    secret: "blahsomething",
+    secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {

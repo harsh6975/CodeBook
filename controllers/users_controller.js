@@ -98,7 +98,6 @@ module.exports.signup = function (req, res) {
 
 //controller for create account
 module.exports.createAccount = async function (req, res) {
-
   if (req.body.password != req.body.confirm_password) {
     req.flash("sucess", "Password not Match");
     return res.redirect("back");
@@ -150,4 +149,125 @@ module.exports.destroySession = function (req, res) {
   req.logout();
   req.flash("sucess", "Logged out sucessfully");
   return res.redirect("/");
+};
+
+module.exports.friend = async function (req, res) {
+  try {
+    let users = await User.find({});
+    let userFriend = new Array();
+    //if user is logged in
+    if (req.user) {
+      for (friend of req.user.friends) {
+        let friend1 = await Friendship.findById(friend);
+
+        let user1 = await User.findById(friend1.to_user);
+        let user2 = await User.findById(friend1.from_user);
+        if (user1.id != req.user.id) {
+          userFriend.push(user1);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        } else if (user2.id != req.user.id) {
+          userFriend.push(user2);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        }
+      }
+      users.splice(users.indexOf(req.user._id), 1);
+    }
+
+    return res.render("friends", {
+      friends: userFriend,
+    });
+  } catch (err) {
+    console.log("Error in finding post", err);
+    return;
+  }
+};
+
+module.exports.allUser = async function (req, res) {
+  try {
+    let users = await User.find({});
+    let userFriend = new Array();
+    //if user is logged in
+    if (req.user) {
+      for (friend of req.user.friends) {
+        let friend1 = await Friendship.findById(friend);
+
+        let user1 = await User.findById(friend1.to_user);
+        let user2 = await User.findById(friend1.from_user);
+        if (user1.id != req.user.id) {
+          userFriend.push(user1);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        } else if (user2.id != req.user.id) {
+          userFriend.push(user2);
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id == user1.id) {
+              users.splice(i, 1);
+              break;
+            }
+          }
+        }
+      }
+      users.splice(users.indexOf(req.user._id), 1);
+    }
+    console.log(users.length);
+    return res.render("alluser", {
+      alluser: users,
+      friends: userFriend,
+    });
+  } catch (err) {
+    console.log("Error in finding post", err);
+    return;
+  }
+};
+
+module.exports.search = async function (req, res) {
+  try {
+    let users = await User.find({});
+    let searchuser = new Array();
+    let rname = req.body.search.toUpperCase();
+
+    for (let j = 0; j < users.length; j++) {
+      // console.log(users[j]);
+      let name = users[j].name.toUpperCase();
+      if (name == rname) {
+        searchuser.push(users[j]);
+      } else {
+        console.log("inside");
+        let i = 0;
+        while (i < name.length) {
+          let x = "";
+          while (i < name.length && name[i] != " ") {
+            x += name[i];
+            i++;
+          }
+          if (x == rname) {
+            searchuser.push(users[j]);
+            break;
+          }
+          i++;
+        }
+      }
+    }
+    console.log(searchuser);
+    return res.render("search", {
+      alluser: searchuser,
+    });
+  } catch (err) {
+    console.log("Error in finding post", err);
+    return;
+  }
 };

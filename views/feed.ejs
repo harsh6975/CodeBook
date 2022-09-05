@@ -1,0 +1,62 @@
+<div class="feed">
+  <div>
+    <div style="height: 40px; background-color: #e75348"></div>
+    <div class="create-post">
+      <div>
+        <%if(user.avatar){%>
+        <img src="<%=user.avatar%>" alt="<%=user.name%>" />
+        <%}else{%>
+        <i class="fas fa-user-circle"></i>
+        <%}%>
+      </div>
+      <div>
+        <strong>Something cooking in your mind 🤔</strong>
+      </div>
+      <div>
+        <button
+          class="btn btn-warning"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#make-post"
+          aria-expanded="false"
+          aria-controls="make-post"
+        >
+          Go
+        </button>
+      </div>
+    </div>
+    <div class="collapse" id="make-post">
+      <div class="card1 card-body">
+        <form action="/posts/create" method="POST" id="new-post-form">
+          <textarea
+            name="content"
+            cols="68"
+            rows="5"
+            placeholder="start typing here..."
+            required
+          ></textarea>
+          <div class="new-post-buttons">
+            <!-- <input
+              class="form-control"
+              type="file"
+              id="formFileMultiple"
+              multiple
+              style="width: 500px"
+            /> -->
+            <button type="submit" class="btn btn-danger">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- post container -->
+  <div id="post-list-container" style="margin-top: 30px">
+    <%if(locals.user){%>
+    <!-- for loop -->
+    <% for(post of postList){%>
+    <!-- include post -->
+    <%-include('_post.ejs')%> <%}%> <%}%>
+  </div>
+
+  <!-- <script src="/js/homeAjax.js"></script> -->
+</div>

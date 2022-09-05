@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "node-sass --watch ./assets/scss -o ./assets/css"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "social"
